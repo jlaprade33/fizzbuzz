@@ -4,7 +4,8 @@ import { Input, TextField } from '@material-ui/core';
 
 const prompts = {
     notice: '(Default value for submit is 20, default is output for anything not a number or higher than 1200)',
-    header: 'Fizz Buzz Challenge Completed by Jeff LaPrade'
+    header: 'Fizz Buzz Challenge Completed by Jeff LaPrade',
+    error: '(Input did not meet requirements, resulting output comes from default value: 20)'
 }
 const useStyles = makeStyles(theme => ({
     container: {
@@ -23,6 +24,15 @@ const useStyles = makeStyles(theme => ({
         fontStyle: 'italic',
         width: '70%',
         margin: 'auto'
+    },
+    error: {
+        fontWeight: 300,
+        fontSize: 12,
+        textAlign: 'center',
+        fontStyle: 'italic',
+        width: '70%',
+        margin: 'auto',
+        color: 'red',
     },
     inputContainer: {
         width: 'fit-content',
@@ -57,8 +67,9 @@ const FizzBuzz = () => {
     const classes = useStyles();
     const [num, setNum] = useState(20);
     const [show, setShow] = useState(false);
-    const [fizzVal, setFizzVal] = useState(null)
- 
+    const [fizzVal, setFizzVal] = useState(null);
+    const [error, setError] = useState(false);
+
     let fizzer = isNaN(num) || num > 1200 ? 20 : num
 
     const outputFizz = () => {
@@ -81,6 +92,8 @@ const FizzBuzz = () => {
 
         setFizzVal(output) 
         setShow(true)
+        return fizzer !== num ? setError(true) : setError(false)
+
     }
 
     return(
@@ -96,6 +109,9 @@ const FizzBuzz = () => {
                 />
                 <div className={classes.button} onClick={()=>outputFizz()}>Submit</div>
             </div>
+            {
+                error ? <h3 className={classes.error}>{prompts.error}</h3> : null
+            }
             {
                 fizzVal && show ? <h3 className={classes.fizz}>{fizzVal}</h3> : null
             }
