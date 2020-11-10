@@ -37,9 +37,23 @@ const FizzBuzz = () => {
     const classes = useStyles();
     const [num, setNum] = useState(20);
     const [show, setShow] = useState(false);
-    
+
     const outputFizz = () => {
-        console.log(num)
+        let output = '';
+        for(let i = 1; i <= num; i++){
+            if(i%3 === 0 && i%5 !== 0){
+                output += 'fizz '
+            }
+            else if(i%5 === 0 && i%3 !== 0){
+                output += 'buzz '
+            }
+            else if(i%15 === 0){
+                output += 'fizzbuzz '
+            }
+            else output += i + ' '
+        }
+       
+        console.log(output)
     }
 
     return(
