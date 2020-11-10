@@ -30,6 +30,12 @@ const useStyles = makeStyles(theme => ({
         "&:hover":{
             opacity: 0.8
         }
+      },
+      fizz: {
+          fontSize: 16,
+          textAlign: 'center',
+          width: '80%',
+          margin: 'auto'
       }
 }));
 
@@ -37,23 +43,28 @@ const FizzBuzz = () => {
     const classes = useStyles();
     const [num, setNum] = useState(20);
     const [show, setShow] = useState(false);
+    const [fizzVal, setFizzVal] = useState(null)
 
     const outputFizz = () => {
         let output = '';
         for(let i = 1; i <= num; i++){
-            if(i%3 === 0 && i%5 !== 0){
-                output += 'fizz '
-            }
-            else if(i%5 === 0 && i%3 !== 0){
-                output += 'buzz '
-            }
-            else if(i%15 === 0){
-                output += 'fizzbuzz '
-            }
-            else output += i + ' '
+            if(i.toString().includes('3')) output += 'lucky '
+            else {
+                if(i%3 === 0 && i%5 !== 0){
+                    output += 'fizz '
+                }
+                else if(i%5 === 0 && i%3 !== 0){
+                    output += 'buzz '
+                }
+                else if(i%15 === 0){
+                    output += 'fizzbuzz '
+                }
+                else output += i + ' '
+            } 
         }
        
-        console.log(output)
+        setFizzVal(output)
+        setShow(true)
     }
 
     return(
@@ -68,6 +79,9 @@ const FizzBuzz = () => {
                 />
                 <div className={classes.button} onClick={()=>outputFizz()}>Submit</div>
             </div>
+            {
+                fizzVal && show ? <h3 className={classes.fizz}>{fizzVal}</h3> : null
+            }
         </div>
     )
 }
