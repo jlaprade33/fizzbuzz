@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     bodyContainer: {
-        height: 350,
+        minHeight: 350,
         margin: '10% 0'
     },
     body: {
@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
         height: 350,
         margin: 'auto',
         border: '2px solid #696969',
-        borderRadius: 15
+        borderRadius: 15,
+        display: 'table'
     },
 }));
 
