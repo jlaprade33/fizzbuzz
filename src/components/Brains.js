@@ -7,6 +7,7 @@ const prompts = {
     header: 'Fizz Buzz Challenge Completed by Jeff LaPrade',
     error: '(Input did not meet requirements, resulting output comes from default value: 20)'
 }
+
 const useStyles = makeStyles(theme => ({
     container: {
         width: '100%',
@@ -33,6 +34,7 @@ const useStyles = makeStyles(theme => ({
         width: '70%',
         margin: 'auto',
         color: 'red',
+        paddingBottom: 20
     },
     inputContainer: {
         width: 'fit-content',
