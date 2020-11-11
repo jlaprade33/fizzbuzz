@@ -90,7 +90,8 @@ const FizzBuzz = () => {
             Fizz: 0,
             Buzz: 0,
             FizzBuzz: 0,
-            Lucky: 0
+            Lucky: 0,
+            Integer: 0
         };
 
         // iterate through num
@@ -112,7 +113,10 @@ const FizzBuzz = () => {
                     output += 'fizzbuzz '
                     reportObj.FizzBuzz += 1
                 }
-                else output += i + ' '
+                else{
+                    output += i + ' '
+                    reportObj.Integer += 1
+                } 
             } 
         }
 
