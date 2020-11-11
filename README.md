@@ -4,4 +4,4 @@
 ### Step 1: run from the root `npm install`
 ### Step 2: run from the root `npm start`
 
-## This project was created as a React app and is hosted at: 
+## This project was created as a React app and is hosted at: `https://fizzbuzz-jeff.herokuapp.com/`
