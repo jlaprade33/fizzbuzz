@@ -60,6 +60,13 @@ const useStyles = makeStyles(theme => ({
         width: '80%',
         margin: 'auto',
         padding: 20
+    },
+    report: {
+        fontSize: 16,
+        textAlign: 'center',
+        width: '80%',
+        margin: 'auto',
+        padding: 0
     }
 }));
 
@@ -69,31 +76,48 @@ const FizzBuzz = () => {
     const [show, setShow] = useState(false);
     const [fizzVal, setFizzVal] = useState(null);
     const [error, setError] = useState(false);
-
-    let fizzer = isNaN(num) || num > 1200 ? 20 : num
+    const [reportVals, setReportVals] = useState(null);
 
     const outputFizz = () => {
+        //edge case to check for number inputs
+        let fizzer = isNaN(num) || num > 1200 ? 20 : num 
+        //output string
         let output = '';
+        //step 3 report
+        let reportObj = {
+            Fizz: 0,
+            Buzz: 0,
+            FizzBuzz: 0,
+            Lucky: 0
+        };
+
+        // iterate through num
         for(let i = 1; i <= fizzer; i++){
-            if(i.toString().includes('3')) output += 'lucky '
+            if(i.toString().includes('3')){
+                output += 'lucky '
+                reportObj.Lucky += 1
+            }
             else {
                 if(i%3 === 0 && i%5 !== 0){
                     output += 'fizz '
+                    reportObj.Fizz += 1
                 }
                 else if(i%5 === 0 && i%3 !== 0){
                     output += 'buzz '
+                    reportObj.Buzz += 1
                 }
                 else if(i%15 === 0){
                     output += 'fizzbuzz '
+                    reportObj.FizzBuzz += 1
                 }
                 else output += i + ' '
             } 
         }
 
+        setReportVals(reportObj)
         setFizzVal(output) 
         setShow(true)
         return fizzer !== num ? setError(true) : setError(false)
-
     }
 
     return(
@@ -113,7 +137,19 @@ const FizzBuzz = () => {
                 error ? <h3 className={classes.error}>{prompts.error}</h3> : null
             }
             {
-                fizzVal && show ? <h3 className={classes.fizz}>{fizzVal}</h3> : null
+                fizzVal && show ? (
+                    <div>
+                         {
+                            Object.keys(reportVals).map((item, index) => {
+                                return(
+                                    <h3 key={index} className={classes.report}>{item + ': ' + reportVals[item]}</h3>
+                                )
+                            })
+                        }
+                        <h3 className={classes.fizz}>{fizzVal}</h3>
+                    </div>
+                    
+                ) : null
             }
         </div>
     )
